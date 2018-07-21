@@ -1,21 +1,33 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 module.exports = {
-    entry: "./src/index.tsx",   
+    entry: "./src/index.tsx",
     output: {
         filename: "bundle.js",
         path: __dirname + "/dist"
     },
-    mode: "development", 
-    // Enable sourcemaps for debugging webpack's output.
+    mode: "development",
+
+    // Enable sourcemaps for debugging webpack's output
     devtool: "source-map",
 
     resolve: {
-        // Add '.ts' and '.tsx' as resolvable extensions.
+        // Add '.ts' and '.tsx' as resolvable extensions
         extensions: [".ts", ".tsx", ".js", ".json"]
     },
 
+    plugins: [
+        new CopyWebpackPlugin([
+            {
+                from: 'index.html',
+                to: ''
+            }
+        ])
+    ],
+
     module: {
         rules: [
-            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+            // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'
             { test: /\.tsx?$/, loader: "ts-loader" },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.

@@ -17,6 +17,7 @@
     "react-dom": "^16.4.1"
   },
   "devDependencies": {
+    "copy-webpack-plugin": "^4.5.2",
     "source-map-loader": "^0.2.3",
     "ts-loader": "^4.4.2",
     "typescript": "^2.9.2",
