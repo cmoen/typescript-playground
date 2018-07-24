@@ -1,4 +1,4 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: "./src/index.tsx",
@@ -17,12 +17,12 @@ module.exports = {
     },
 
     plugins: [
-        new CopyWebpackPlugin([
-            {
-                from: 'index.html',
-                to: ''
-            }
-        ])
+        new HtmlWebpackPlugin({
+            hash: true,
+            title: 'My Awesome application',
+            template: './src/index.html',
+            filename: './index.html'
+        })
     ],
 
     module: {
@@ -31,7 +31,16 @@ module.exports = {
             { test: /\.tsx?$/, loader: "ts-loader" },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+
+            {
+                test: /\.scss$/,
+                use: [
+                    "style-loader", // creates style nodes from JS strings
+                    "css-loader", // translates CSS into CommonJS
+                    "sass-loader" // compiles Sass to CSS
+                ]
+            }
         ]
     }
 };
