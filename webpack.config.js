@@ -1,15 +1,23 @@
+const autoprefixer = require("autoprefixer");
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
+const path = require("path");
 
 module.exports = {
-    entry: "./src/index.tsx",
+    entry: {
+        main: [
+            path.resolve("src", "index.tsx"),
+            path.resolve("src", "styles", "kuromoji.scss")
+        ]
+    },
+    mode:
+        "development",
+
     output: {
-        filename: "bundle.js",
+        filename: "[name]-[hashs].js",
         path: __dirname + "/dist"
     },
-    mode: "development",
-
-    // Enable sourcemaps for debugging webpack's output
-    devtool: "source-map",
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions
@@ -22,6 +30,9 @@ module.exports = {
             title: 'My Awesome application',
             template: './src/index.html',
             filename: './index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: "styles/[name]-[hash].css"
         })
     ],
 
@@ -33,14 +44,35 @@ module.exports = {
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
 
+            // lots of other rules here
             {
                 test: /\.scss$/,
                 use: [
-                    "style-loader", // creates style nodes from JS strings
-                    "css-loader", // translates CSS into CommonJS
-                    "sass-loader" // compiles Sass to CSS
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: "css-loader",
+                        options: {
+                            autoprefixer: false,
+                            minimize: process.env.npm_lifecycle_event === "build",
+                            importLoaders: 3,
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            sourceMap: true,
+                            ident: "postcss",
+                            plugins: () => [
+                                autoprefixer({ browsers: ["last 2 versions", "> 2%", "ie >= 10"] })
+                            ]
+                        }
+                    },
+                    { loader: "resolve-url-loader?sourceMap" },
+                    { loader: "sass-loader?sourceMap" }
                 ]
             }
         ]
     }
 };
+

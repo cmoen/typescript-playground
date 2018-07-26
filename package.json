@@ -7,20 +7,30 @@
     "webpack": "webpack",
     "dev": "webpack-dev-server --hot --inline"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cmoen/typescript-playground.git"
+  },
   "author": "",
   "license": "UNLICENSED",
   "dependencies": {
     "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^5.0.7",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.1",
+    "node-sass": "^4.9.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0"
   },
   "devDependencies": {
-    "html-webpack-plugin": "^3.2.0",
-    "node-sass": "^4.9.2",
+    "ajv": "^6.0.0",
+    "autoprefixer": "^9.0.1",
+    "css-loader": "^1.0.0",
+    "postcss-loader": "^2.1.6",
+    "resolve-url-loader": "^2.3.0",
     "sass-loader": "^7.0.3",
     "source-map-loader": "^0.2.3",
     "ts-loader": "^4.4.2",

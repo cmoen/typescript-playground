@@ -9,7 +9,7 @@ export interface HelloProps {
 }
 
 export interface TokenizerState {
-    input   : string;
+    input: string;
 }
 
 // 'HelloProps' describes the shape of props.
