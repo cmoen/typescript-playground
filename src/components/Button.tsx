@@ -11,7 +11,7 @@ export class Button extends React.Component<ButtonProps, {}> {
         super(props);
     }
 
-    render() {
-        return <button onClick={this.props.onClick}>{this.props.title}</button>
+    public render() {
+        return <button onClick={this.props.onClick}>{this.props.title}</button>;
     }
 }

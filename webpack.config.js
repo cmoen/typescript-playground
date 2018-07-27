@@ -8,14 +8,14 @@ module.exports = {
     entry: {
         main: [
             path.resolve("src", "index.tsx"),
-            path.resolve("src", "styles", "kuromoji.scss")
+            path.resolve("src", "styles", "app.scss")
         ]
     },
     mode:
         "development",
 
     output: {
-        filename: "[name]-[hashs].js",
+        filename: "[name]-[hash].js",
         path: __dirname + "/dist"
     },
 

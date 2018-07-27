@@ -4,6 +4,7 @@
   "description": "Getting started with TypeScript",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "tslint -p .",
     "webpack": "webpack",
     "dev": "webpack-dev-server --hot --inline"
   },
@@ -33,6 +34,7 @@
     "sass-loader": "^7.0.3",
     "source-map-loader": "^0.2.3",
     "ts-loader": "^4.4.2",
+    "tslint": "^5.11.0",
     "typescript": "^2.9.2",
     "webpack": "^4.16.2",
     "webpack-cli": "^3.1.0",

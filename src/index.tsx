@@ -1,9 +1,15 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import {render} from "react-dom";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import React     = require("../node_modules/@types/react");
+import {App} from "./components/App";
 
-import { App } from "./components/App";
+const store = createStore(tokenizer);
 
-ReactDOM.render(
-    <App compiler="TypeScript" framework="React" />,
-    document.getElementById("example")
+render(
+    <Provider store={store}>
+        <App compiler="TypeScript" framework="React"/>,
+    </Provider>,
+
+    document.getElementById("example"),
 );
